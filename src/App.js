@@ -1,9 +1,8 @@
-function App() {
-  fetch("https://pre-onboarding-selection-task.shop/").then((res) =>
-    console.log(res)
-  );
+import { signUp } from "./apis/auth";
 
-  return <div className="App">hi</div>;
+function App() {
+  signUp("hiyo22l@email.com", "11112222");
+  return <div className="App">hiTest</div>;
 }
 
 export default App;
