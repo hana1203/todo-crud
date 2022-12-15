@@ -1,11 +1,18 @@
-import { useState } from "react";
-import { signUp } from "./apis/auth";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Sign } from "./pages/Sign";
+import { Todo } from "./pages/Todo";
 
 function App() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  signUp("heyiisf@email.com", "hihi1111");
-  return <div className="App">hi</div>;
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Sign />} />
+          <Route path="/todo" element={<Todo />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
 }
 
 export default App;
