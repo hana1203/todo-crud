@@ -8,7 +8,7 @@ export const instance = axios.create({
 //요청 인터셉터 추가
 instance.interceptors.request.use(
   function (config) {
-    const ACCESS_TOKEN = localStorage.get("accessToken");
+    const ACCESS_TOKEN = localStorage.getItem("accessToken");
     if (ACCESS_TOKEN) {
       config.headers.Authorization = `Bearer ${ACCESS_TOKEN}`;
     }
