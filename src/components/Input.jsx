@@ -9,6 +9,7 @@ export const Input = ({
   onChange,
   isError,
   errMsg,
+  className,
 }) => {
   return (
     <InputWrapper>
@@ -18,6 +19,7 @@ export const Input = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        className={className}
       ></input>
       {isError && <p>{errMsg}</p>}
     </InputWrapper>
@@ -27,8 +29,15 @@ export const Input = ({
 const InputWrapper = styled.div`
   > input {
     border: none;
-    border-radius: 10px;
     background-color: lavender;
+    width: 10rem;
+    height: 2rem;
+
+    &.big {
+      width: 18rem;
+      border-radius: 56px;
+      font-size: 16px;
+    }
   }
   > p {
     color: red;
