@@ -51,8 +51,7 @@ export const Sign = () => {
     if (!isLoginPage) {
       signUp(email, password);
     } else if (isLoginPage) {
-      logIn(email, password);
-      navigate("/todo");
+      logIn(email, password).then(() => navigate("/todo"));
     }
   };
 
@@ -61,12 +60,12 @@ export const Sign = () => {
     if (localStorage.getItem("accessToken")) {
       navigate("/todo");
     }
-  }, [navigate]);
+  }, []);
 
   return (
     <>
       <Tab>
-        <Button onClick={() => setIsLoginPage(false)}>회원가입</Button>
+        <Button onClick={setIsLoginPage(false)}>회원가입</Button>
         <Button onClick={() => setIsLoginPage(true)}>로그인</Button>
       </Tab>
       <SignForm onSubmit={submitSign}>
