@@ -65,7 +65,7 @@ export const Sign = () => {
   return (
     <>
       <Tab>
-        <Button onClick={setIsLoginPage(false)}>회원가입</Button>
+        <Button onClick={() => setIsLoginPage(false)}>회원가입</Button>
         <Button onClick={() => setIsLoginPage(true)}>로그인</Button>
       </Tab>
       <SignForm onSubmit={submitSign}>
