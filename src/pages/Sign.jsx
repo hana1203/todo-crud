@@ -63,43 +63,92 @@ export const Sign = () => {
   }, []);
 
   return (
-    <>
-      <Tab>
-        <Button onClick={() => setIsLoginPage(false)}>회원가입</Button>
-        <Button onClick={() => setIsLoginPage(true)}>로그인</Button>
-      </Tab>
-      <SignForm onSubmit={submitSign}>
-        {isLoginPage ? <h3>로그인</h3> : <h3>회원가입</h3>}
-        <label>이메일</label>
-        <Input
-          placeholder={"이메일"}
-          type={"text"}
-          onChange={setEmailValidation}
-          isError={isEmailError}
-          errMsg="올바른 이메일 형식을 입력하세요"
-        ></Input>
-        <label>비밀번호</label>
-        <Input
-          placeholder={"비밀번호"}
-          type={"password"}
-          onChange={setPasswordValidation}
-          isError={isPasswordError}
-          errMsg="8자 이상 비밀번호를 입력하세요"
-        ></Input>
-        <Button
-          disabled={
-            isEmailError ||
-            isPasswordError ||
-            email.length === 0 ||
-            password.length === 0
-          }
-        >
-          {isLoginPage ? "로그인" : "회원가입"}
-        </Button>
-      </SignForm>
-    </>
+    <SignContainer>
+      <SignWrapper>
+        <Tab>
+          <Button onClick={() => setIsLoginPage(false)}>회원가입</Button>
+          <Button onClick={() => setIsLoginPage(true)}>로그인</Button>
+        </Tab>
+        <SignForm onSubmit={submitSign}>
+          {isLoginPage ? <h3>로그인</h3> : <h3>회원가입</h3>}
+          <SpanInputWrapper>
+            <label>이메일</label>
+            <Input
+              placeholder={"이메일"}
+              type={"text"}
+              onChange={setEmailValidation}
+              isError={isEmailError}
+              errMsg="올바른 이메일 형식을 입력하세요"
+            ></Input>
+          </SpanInputWrapper>
+          <SpanInputWrapper>
+            <label>비밀번호</label>
+            <Input
+              placeholder={"비밀번호"}
+              type={"password"}
+              onChange={setPasswordValidation}
+              isError={isPasswordError}
+              errMsg="8자 이상 비밀번호를 입력하세요"
+            ></Input>
+          </SpanInputWrapper>
+          <Button
+            disabled={
+              isEmailError ||
+              isPasswordError ||
+              email.length === 0 ||
+              password.length === 0
+            }
+          >
+            {isLoginPage ? "로그인" : "회원가입"}
+          </Button>
+        </SignForm>
+      </SignWrapper>
+    </SignContainer>
   );
 };
 
-const Tab = styled.div``;
-const SignForm = styled.form``;
+const SignContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  /* background-color: aliceblue; */
+`;
+
+const SignWrapper = styled.div`
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
+  background-color: white;
+  width: 24rem;
+  border-radius: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 2rem;
+`;
+
+const Tab = styled.div`
+  margin: 1rem 0;
+  display: flex;
+  > button:first-of-type {
+    margin-right: 8px;
+  }
+  > button:nth-of-type(2) {
+    margin-left: 8px;
+  }
+`;
+
+const SignForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  > h3 {
+    margin: 16px 0;
+  }
+
+  > button {
+    margin: 16px 0;
+  }
+`;
+
+const SpanInputWrapper = styled.div`
+  padding: 16px;
+`;

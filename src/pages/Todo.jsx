@@ -92,6 +92,7 @@ const TodoInputListWrapper = styled.div`
 const TodoInputForm = styled.form`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const TodoListContainer = styled.div`

@@ -30,9 +30,11 @@ const InputWrapper = styled.div`
   > input {
     border: none;
     background-color: lavender;
-    width: 10rem;
+    width: 14rem;
     height: 2rem;
     padding: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 
     &.big {
       width: 16.5rem;
