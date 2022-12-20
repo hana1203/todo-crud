@@ -39,37 +39,61 @@ export const Todo = () => {
   // {id: 8718, todo: '할일2', isCompleted: false, userId: 4840}]
 
   return (
-    <>
-      <h3>🧸 할 일을 하자</h3>
-      <TodoInputForm onSubmit={submitTodo}>
-        <Input
-          className="big"
-          onChange={(e) => setTodoInput(e.target.value)}
-          value={todoInput}
-        ></Input>
-        <Button className="medium" disabled={todoInput.length === 0}>
-          추가
-        </Button>
-      </TodoInputForm>
+    <TodoInputListContainer>
+      <TodoInputListWrapper>
+        <h3>🧸 할 일을 하자</h3>
+        <TodoInputForm onSubmit={submitTodo}>
+          <Input
+            className="big"
+            onChange={(e) => setTodoInput(e.target.value)}
+            value={todoInput}
+          ></Input>
+          <Button className="medium" disabled={todoInput.length === 0}>
+            추가
+          </Button>
+        </TodoInputForm>
 
-      <TodoListContainer>
-        {todoList &&
-          todoList.map(({ id, todo, isCompleted }) => (
-            <TodoRow
-              key={id}
-              id={id}
-              todo={todo}
-              isCompleted={isCompleted}
-              setIsLIstUpdated={setIsLIstUpdated}
-            ></TodoRow>
-          ))}
-      </TodoListContainer>
-    </>
+        <TodoListContainer>
+          {todoList &&
+            todoList.map(({ id, todo, isCompleted }) => (
+              <TodoRow
+                key={id}
+                id={id}
+                todo={todo}
+                isCompleted={isCompleted}
+                setIsLIstUpdated={setIsLIstUpdated}
+              ></TodoRow>
+            ))}
+        </TodoListContainer>
+      </TodoInputListWrapper>
+    </TodoInputListContainer>
   );
 };
 
-const TodoInputForm = styled.form`
+const TodoInputListContainer = styled.div`
   display: flex;
+  justify-content: center;
+  background-color: aliceblue;
+`;
+const TodoInputListWrapper = styled.div`
+  background-color: white;
+  width: 24rem;
+  /* height: auto; */
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+  > h3 {
+    text-align: center;
+    margin: 16px 0;
+  }
 `;
 
-const TodoListContainer = styled.div``;
+const TodoInputForm = styled.form`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const TodoListContainer = styled.div`
+  margin: 16px 0;
+`;

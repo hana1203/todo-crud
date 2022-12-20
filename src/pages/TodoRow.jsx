@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { deleteTodo, updateTodo } from "../apis/todo";
 import { Button } from "../components/Button";
 
@@ -60,7 +60,7 @@ export const TodoRow = ({ id, todo, isCompleted, setIsLIstUpdated }) => {
         </>
       ) : (
         <>
-          <TodoContent>{todo}</TodoContent>
+          <TodoContent strikeThrough={isChecked}>{todo}</TodoContent>
           <Button className="small" onClick={() => handleEdit(id)}>
             수정
           </Button>
@@ -75,15 +75,33 @@ export const TodoRow = ({ id, todo, isCompleted, setIsLIstUpdated }) => {
 
 const TodoWrapper = styled.div`
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
 `;
 
-const CheckBox = styled.input``;
+const CheckBox = styled.input`
+  cursor: pointer;
+`;
 const TodoContent = styled.div`
   background-color: cornsilk;
-  width: 18rem;
-  height: 2rem;
-  /* border-radius: 56px; */
+  width: 14rem;
+  /* height: 2rem; */
+  height: auto;
   font-size: 16px;
+  line-height: 2rem; //박스에서 글자가 가운데오도록
+  padding-left: 4px;
+
+  //isChecked 줄긋기
+  ${({ strikeThrough }) =>
+    strikeThrough &&
+    css`
+      text-decoration: line-through;
+      color: grey;
+    `}
 `;
 
-const TodoEditContent = styled.input``;
+const TodoEditContent = styled.input`
+  width: 14rem;
+  font-size: 16px;
+`;

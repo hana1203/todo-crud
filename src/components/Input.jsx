@@ -32,9 +32,10 @@ const InputWrapper = styled.div`
     background-color: lavender;
     width: 10rem;
     height: 2rem;
+    padding: 16px;
 
     &.big {
-      width: 18rem;
+      width: 16.5rem;
       border-radius: 56px;
       font-size: 16px;
     }
