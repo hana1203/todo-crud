@@ -21,6 +21,7 @@ export const Todo = () => {
     e.preventDefault();
     createTodo(todoInput);
     setIsLIstUpdated(true);
+    setTodoInput(""); //추가시 input 값 비우기
   };
   console.log(todoInput);
 
@@ -72,8 +73,11 @@ export const Todo = () => {
 
 const TodoInputListContainer = styled.div`
   display: flex;
-  justify-content: center;
+  width: 100vw;
+  height: 100vh;
   background-color: aliceblue;
+  justify-content: center;
+  align-items: center;
 `;
 const TodoInputListWrapper = styled.div`
   background-color: white;

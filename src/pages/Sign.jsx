@@ -109,8 +109,11 @@ export const Sign = () => {
 
 const SignContainer = styled.div`
   display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: aliceblue;
   justify-content: center;
-  /* background-color: aliceblue; */
+  align-items: center;
 `;
 
 const SignWrapper = styled.div`
@@ -119,6 +122,7 @@ const SignWrapper = styled.div`
   justify-content: center; */
   background-color: white;
   width: 24rem;
+  height: fit-content;
   border-radius: 10px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   padding: 2rem;
