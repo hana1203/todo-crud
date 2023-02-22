@@ -1,6 +1,11 @@
 import { instance } from "./config";
 
-export const signUp = async (email, password) => {
+interface Payload {
+  email: string;
+  password: string;
+}
+
+export const signUp = async ({ email, password }: Payload) => {
   await instance
     .post("/auth/signup", {
       email: email,
@@ -20,7 +25,7 @@ export const signUp = async (email, password) => {
     });
 };
 
-export const logIn = async (email, password) => {
+export const logIn = async ({ email, password }: Payload) => {
   await instance
     .post("/auth/signin", {
       email: email,

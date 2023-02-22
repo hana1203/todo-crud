@@ -1,6 +1,17 @@
+import React from "react";
 import { instance } from "./config";
 
-export const createTodo = async (todoBody) => {
+interface TodoPayload {
+  todoBody: string;
+  id?: string;
+  isCompletedBody?: boolean;
+}
+
+interface Prop {
+  setTodoList: React.Dispatch<React.SetStateAction<never[]>>;
+}
+
+export const createTodo = async ({ todoBody }: TodoPayload) => {
   try {
     const { data } = await instance.post("/todos", {
       todo: todoBody,
@@ -22,7 +33,7 @@ export const createTodo = async (todoBody) => {
 //   }
 // };
 
-export const getTodos = async ({ setTodoList }) => {
+export const getTodos = async ({ setTodoList }: Prop) => {
   try {
     const { data } = await instance.get("/todos");
     console.log("data", data); //[{id: 8807, todo: '1234', isCompleted: false, userId: 4840}, {…}]
@@ -32,16 +43,20 @@ export const getTodos = async ({ setTodoList }) => {
   }
 };
 
-export const deleteTodo = async (id) => {
+export const deleteTodo = async (id: string) => {
   try {
     await instance.delete(`/todos/${id}`);
-  } catch (err) {
+  } catch (err: any) {
     console.log(err);
     alert(err.response.data.message);
   }
 };
 
-export const updateTodo = async (id, todoBody, isCompletedBody) => {
+export const updateTodo = async (
+  id: string,
+  todoBody: string,
+  isCompletedBody: boolean
+) => {
   try {
     const { data } = await instance.put(`/todos/${id}`, {
       todo: todoBody,

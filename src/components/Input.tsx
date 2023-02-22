@@ -1,6 +1,15 @@
-import { useState } from "react";
 import styled from "styled-components";
 
+interface Props {
+  type?: string;
+  name?: string;
+  placeholder?: string;
+  value?: string;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  isError?: boolean;
+  errMsg?: string;
+  className?: string;
+}
 export const Input = ({
   type,
   name,
@@ -10,7 +19,7 @@ export const Input = ({
   isError,
   errMsg,
   className,
-}) => {
+}: Props) => {
   return (
     <InputWrapper>
       <input

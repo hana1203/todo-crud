@@ -17,9 +17,9 @@ export const Todo = () => {
   // const [isChecked, setIsChecked] = useState();
 
   const navigate = useNavigate();
-  const submitTodo = (e) => {
+  const submitTodo = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
-    createTodo(todoInput);
+    createTodo({ todoBody: todoInput });
     setIsLIstUpdated(true);
     setTodoInput(""); //추가시 input 값 비우기
   };
@@ -43,7 +43,7 @@ export const Todo = () => {
     <TodoInputListContainer>
       <TodoInputListWrapper>
         <h3>🧸 할 일을 하자</h3>
-        <TodoInputForm onSubmit={submitTodo}>
+        <TodoInputForm onSubmit={(e) => submitTodo}>
           <Input
             className="big"
             onChange={(e) => setTodoInput(e.target.value)}

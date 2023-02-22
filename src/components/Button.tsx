@@ -1,6 +1,13 @@
+import { ReactNode } from "react";
 import styled from "styled-components";
-
-export const Button = ({ children, disabled, className, onClick }) => {
+interface Props {
+  children: ReactNode;
+  disabled?: boolean;
+  className?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  // onClick?: () => void;
+}
+export const Button = ({ children, disabled, className, onClick }: Props) => {
   return (
     <ButtonTag disabled={disabled} className={className} onClick={onClick}>
       {children}

@@ -2,35 +2,45 @@ import { useState } from "react";
 import styled, { css } from "styled-components";
 import { deleteTodo, updateTodo } from "../apis/todo";
 import { Button } from "../components/Button";
+interface Props {
+  id: string;
+  todo: string;
+  isCompleted: boolean;
+  setIsLIstUpdated: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-export const TodoRow = ({ id, todo, isCompleted, setIsLIstUpdated }) => {
-  const [editId, setEditId] = useState(null);
-  const [edittedInput, setEdittedInput] = useState(todo);
-  const [isChecked, setIsChecked] = useState(isCompleted);
+export const TodoRow = ({ id, todo, isCompleted, setIsLIstUpdated }: Props) => {
+  const [editId, setEditId] = useState<string | null>(null);
+  const [edittedInput, setEdittedInput] = useState<string>(todo);
+  const [isChecked, setIsChecked] = useState<boolean>(isCompleted);
 
   //수정 버튼 누르기
-  const handleEdit = (id) => {
+  const handleEdit = (id: string) => {
     setEditId(id);
   };
   //삭제 누르기
-  const handleDelete = (id) => {
+  const handleDelete = (id: string) => {
     deleteTodo(id);
     setIsLIstUpdated(true);
   };
 
   //input에 수정한 내용 제출하기
-  const submitEdittedInput = (id, edittedInput, isChecked) => {
+  const submitEdittedInput = (
+    id: string,
+    edittedInput: string,
+    isChecked: boolean
+  ) => {
     updateTodo(id, edittedInput, isChecked);
     setIsLIstUpdated(true);
     setEditId(null);
   };
 
   //수정하던거 취소하기
-  const cancelEdittedInput = () => {
+  const cancelEdittedInput = (id: string) => {
     setEditId(null);
   };
   //수정 input 값 상태에 저장
-  const handleEdittedChange = (e) => {
+  const handleEdittedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEdittedInput(e.target.value);
     console.log("edittedInput", edittedInput);
   };
@@ -60,7 +70,8 @@ export const TodoRow = ({ id, todo, isCompleted, setIsLIstUpdated }) => {
         </>
       ) : (
         <>
-          <TodoContent strikeThrough={isChecked}>{todo}</TodoContent>
+          {/* <TodoContent strikeThrough={isChecked}>{todo}</TodoContent> */}
+          <TodoContent>{todo}</TodoContent>
           <Button className="small" onClick={() => handleEdit(id)}>
             수정
           </Button>
@@ -93,7 +104,7 @@ const TodoContent = styled.div`
   padding-left: 4px;
 
   //isChecked 줄긋기
-  ${({ strikeThrough }) =>
+  ${({ strikeThrough }: any) =>
     strikeThrough &&
     css`
       text-decoration: line-through;

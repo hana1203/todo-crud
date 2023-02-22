@@ -15,6 +15,10 @@ import { useNavigate } from "react-router-dom";
 // 11111111
 // logIn("hakuna1111@email.com", "hihi1111");
 
+//2.21 추가
+//loo@email.com
+//looloo11
+
 export const Sign = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,7 +28,7 @@ export const Sign = () => {
   const [isLoginPage, setIsLoginPage] = useState(true);
 
   const navigate = useNavigate();
-  const setEmailValidation = (e) => {
+  const setEmailValidation = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
 
     if (!checkEmailValidation(value)) {
@@ -35,7 +39,7 @@ export const Sign = () => {
     setEmail(value);
   };
 
-  const setPasswordValidation = (e) => {
+  const setPasswordValidation = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
 
     if (!checkPasswordValidation(value)) {
@@ -46,12 +50,12 @@ export const Sign = () => {
     setPassword(value);
   };
 
-  const submitSign = (e) => {
+  const submitSign = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     if (!isLoginPage) {
-      signUp(email, password);
+      signUp({ email, password });
     } else if (isLoginPage) {
-      logIn(email, password).then(() => navigate("/todo"));
+      logIn({ email, password }).then(() => navigate("/todo"));
     }
   };
 
@@ -69,7 +73,7 @@ export const Sign = () => {
           <Button onClick={() => setIsLoginPage(false)}>회원가입</Button>
           <Button onClick={() => setIsLoginPage(true)}>로그인</Button>
         </Tab>
-        <SignForm onSubmit={submitSign}>
+        <SignForm onSubmit={(e) => submitSign}>
           {isLoginPage ? <h3>로그인</h3> : <h3>회원가입</h3>}
           <SpanInputWrapper>
             <label>이메일</label>
