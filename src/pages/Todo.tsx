@@ -17,7 +17,7 @@ export const Todo = () => {
   // const [isChecked, setIsChecked] = useState();
 
   const navigate = useNavigate();
-  const submitTodo = (e: React.FormEvent<HTMLInputElement>) => {
+  const submitTodo = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     createTodo({ todoBody: todoInput });
     setIsLIstUpdated(true);
@@ -42,11 +42,13 @@ export const Todo = () => {
   return (
     <TodoInputListContainer>
       <TodoInputListWrapper>
-        <h3>🧸 할 일을 하자</h3>
-        <TodoInputForm onSubmit={(e) => submitTodo}>
+        <h3>오늘 할 일</h3>
+        <TodoInputForm onSubmit={(e) => submitTodo(e)}>
           <Input
             className="big"
-            onChange={(e) => setTodoInput(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setTodoInput(e.target.value)
+            }
             value={todoInput}
           ></Input>
           <Button className="medium" disabled={todoInput.length === 0}>

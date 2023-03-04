@@ -36,5 +36,8 @@ export const logIn = async ({ email, password }: Payload) => {
       console.log("로그인시 토큰", res.data.access_token);
       alert(`${email}님 로그인 성공이에요`);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      alert(err.response.data.message);
+      console.log(err);
+    });
 };
