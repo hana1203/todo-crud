@@ -5,7 +5,7 @@ interface Props {
   name?: string;
   placeholder?: string;
   value?: string;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   isError?: boolean;
   errMsg?: string;
   className?: string;

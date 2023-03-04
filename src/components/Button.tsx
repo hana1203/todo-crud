@@ -4,8 +4,8 @@ interface Props {
   children: ReactNode;
   disabled?: boolean;
   className?: string;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  // onClick?: () => void;
+  // onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: () => void;
 }
 export const Button = ({ children, disabled, className, onClick }: Props) => {
   return (
