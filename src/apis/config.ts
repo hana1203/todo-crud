@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig, AxiosError } from "axios";
 
 export const instance = axios.create({
   baseURL: "https://pre-onboarding-selection-task.shop",
@@ -7,14 +7,15 @@ export const instance = axios.create({
 
 //요청 인터셉터 추가
 instance.interceptors.request.use(
-  function (config) {
+  function (config: AxiosRequestConfig): AxiosRequestConfig {
     const ACCESS_TOKEN = localStorage.getItem("accessToken");
     if (ACCESS_TOKEN) {
-      config.headers!.Authorization = `Bearer ${ACCESS_TOKEN}`;
+      // config.headers.Authorization = `Bearer ${ACCESS_TOKEN}`;
+      config.headers = { Authorization: `Bearer ${ACCESS_TOKEN}` };
     }
     return config;
   },
-  function (error) {
+  function (error: AxiosError): Promise<AxiosError> {
     return Promise.reject(error);
   }
 );
