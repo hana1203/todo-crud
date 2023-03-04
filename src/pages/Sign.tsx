@@ -49,7 +49,21 @@ export const Sign = () => {
     } else if (isLoginPage) {
       logIn({ email, password }).then(() => navigate("/todo"));
     }
+    setEmail("");
+    setPassword("");
   };
+
+  const handleClickToOther = () => {
+    if (isLoginPage) {
+      setIsLoginPage(false);
+    } else {
+      setIsLoginPage(true);
+    }
+    setEmail("");
+    setPassword("");
+  };
+
+  // console.log("email", email);
 
   //토큰 있는 상태로 로그인 페이지 접속시 투두페이지로 가기
   useEffect(() => {
@@ -61,17 +75,15 @@ export const Sign = () => {
   return (
     <SignContainer>
       <SignWrapper>
-        <Tab>
-          <Button onClick={() => setIsLoginPage(false)}>회원가입</Button>
-          <Button onClick={() => setIsLoginPage(true)}>로그인</Button>
-        </Tab>
         <SignForm onSubmit={submitSign}>
           {isLoginPage ? <h3>로그인</h3> : <h3>회원가입</h3>}
           <SpanInputWrapper>
             <label>이메일</label>
+
             <Input
-              placeholder={"이메일"}
+              placeholder={"이메일은 @ 를 포함해요"}
               type={"text"}
+              value={email}
               onChange={setEmailValidation}
               isError={isEmailError}
               errMsg="올바른 이메일 형식을 입력하세요"
@@ -81,8 +93,9 @@ export const Sign = () => {
           <SpanInputWrapper>
             <label>비밀번호</label>
             <Input
-              placeholder={"비밀번호"}
+              placeholder={"8자 이상 비밀번호를 입력하세요"}
               type={"password"}
+              value={password}
               onChange={setPasswordValidation}
               isError={isPasswordError}
               errMsg="8자 이상 비밀번호를 입력하세요"
@@ -90,6 +103,7 @@ export const Sign = () => {
             ></Input>
           </SpanInputWrapper>
           <Button
+            className="large"
             disabled={
               isEmailError ||
               isPasswordError ||
@@ -100,6 +114,13 @@ export const Sign = () => {
             {isLoginPage ? "로그인" : "회원가입"}
           </Button>
         </SignForm>
+        <Tab>
+          {isLoginPage ? (
+            <div onClick={handleClickToOther}>회원가입 하러 가기</div>
+          ) : (
+            <div onClick={handleClickToOther}>로그인 하러 가기</div>
+          )}
+        </Tab>
       </SignWrapper>
     </SignContainer>
   );
@@ -129,11 +150,14 @@ const SignWrapper = styled.div`
 const Tab = styled.div`
   margin: 1rem 0;
   display: flex;
-  > button:first-of-type {
-    margin-right: 8px;
-  }
-  > button:nth-of-type(2) {
-    margin-left: 8px;
+  justify-content: flex-end;
+  > div {
+    cursor: pointer;
+    padding-right: 2rem;
+    color: rgb(118, 118, 246);
+    :hover {
+      color: rgb(80, 80, 185);
+    }
   }
 `;
 

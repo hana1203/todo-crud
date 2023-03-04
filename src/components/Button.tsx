@@ -24,7 +24,11 @@ const ButtonTag = styled.button`
     cursor: none;
     background-color: whitesmoke;
   }
-
+  &.large {
+    height: 2.2rem;
+    border-radius: 32px;
+    font-size: medium;
+  }
   &.medium {
     width: 5rem;
     border-radius: 16px;
