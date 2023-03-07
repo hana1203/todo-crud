@@ -1,6 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import { Sign } from "./pages/Sign";
 import { TodoList } from "./pages/TodoList";
+import "./App.css"; //css파일 추가하기
 
 function App() {
   if (process.env.NODE_ENV === "production") {
@@ -14,6 +16,7 @@ function App() {
           <Route path="/todo" element={<TodoList />} />
         </Routes>
       </BrowserRouter>
+      <ToastContainer position="top-center" autoClose={1500} />
     </div>
   );
 }

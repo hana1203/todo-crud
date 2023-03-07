@@ -61,6 +61,8 @@ export const Sign = () => {
     }
     setEmail("");
     setPassword("");
+    setIsEmailError(false);
+    setIsPasswordError(false);
   };
 
   // console.log("email", email);
@@ -73,67 +75,56 @@ export const Sign = () => {
   }, []);
 
   return (
-    <SignContainer>
-      <SignWrapper>
-        <SignForm onSubmit={submitSign}>
-          {isLoginPage ? <h3>로그인</h3> : <h3>회원가입</h3>}
-          <SpanInputWrapper>
-            <label>이메일</label>
+    <SignWrapper>
+      <SignForm onSubmit={submitSign}>
+        {isLoginPage ? <h3>로그인</h3> : <h3>회원가입</h3>}
+        <SpanInputWrapper>
+          <label>이메일</label>
 
-            <Input
-              placeholder={"이메일은 @ 를 포함해요"}
-              type={"text"}
-              value={email}
-              onChange={setEmailValidation}
-              isError={isEmailError}
-              errMsg="올바른 이메일 형식을 입력하세요"
-              className="big"
-            ></Input>
-          </SpanInputWrapper>
-          <SpanInputWrapper>
-            <label>비밀번호</label>
-            <Input
-              placeholder={"8자 이상 비밀번호를 입력하세요"}
-              type={"password"}
-              value={password}
-              onChange={setPasswordValidation}
-              isError={isPasswordError}
-              errMsg="8자 이상 비밀번호를 입력하세요"
-              className="big"
-            ></Input>
-          </SpanInputWrapper>
-          <Button
-            className="large"
-            disabled={
-              isEmailError ||
-              isPasswordError ||
-              email.length === 0 ||
-              password.length === 0
-            }
-          >
-            {isLoginPage ? "로그인" : "회원가입"}
-          </Button>
-        </SignForm>
-        <Tab>
-          {isLoginPage ? (
-            <div onClick={handleClickToOther}>회원가입 하러 가기</div>
-          ) : (
-            <div onClick={handleClickToOther}>로그인 하러 가기</div>
-          )}
-        </Tab>
-      </SignWrapper>
-    </SignContainer>
+          <Input
+            placeholder={"이메일은 @ 를 포함해요"}
+            type={"text"}
+            value={email}
+            onChange={setEmailValidation}
+            isError={isEmailError}
+            errMsg="올바른 이메일 형식을 입력하세요"
+            className="big"
+          ></Input>
+        </SpanInputWrapper>
+        <SpanInputWrapper>
+          <label>비밀번호</label>
+          <Input
+            placeholder={"8자 이상 비밀번호를 입력하세요"}
+            type={"password"}
+            value={password}
+            onChange={setPasswordValidation}
+            isError={isPasswordError}
+            errMsg="8자 이상 비밀번호를 입력하세요"
+            className="big"
+          ></Input>
+        </SpanInputWrapper>
+        <Button
+          className="large"
+          disabled={
+            isEmailError ||
+            isPasswordError ||
+            email.length === 0 ||
+            password.length === 0
+          }
+        >
+          {isLoginPage ? "로그인" : "회원가입"}
+        </Button>
+      </SignForm>
+      <Tab>
+        {isLoginPage ? (
+          <div onClick={handleClickToOther}>회원가입 하러 가기</div>
+        ) : (
+          <div onClick={handleClickToOther}>로그인 하러 가기</div>
+        )}
+      </Tab>
+    </SignWrapper>
   );
 };
-
-const SignContainer = styled.div`
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  background-color: aliceblue;
-  justify-content: center;
-  align-items: center;
-`;
 
 const SignWrapper = styled.div`
   /* display: flex;

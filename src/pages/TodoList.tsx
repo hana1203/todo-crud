@@ -39,47 +39,37 @@ export const TodoList = () => {
   }, []);
 
   return (
-    <TodoInputListContainer>
-      <TodoInputListWrapper>
-        <h3>오늘 할 일</h3>
-        <TodoInputForm onSubmit={(e) => submitTodo(e)}>
-          <Input
-            className="big"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setTodoInput(e.target.value)
-            }
-            value={todoInput}
-          ></Input>
-          <Button className="medium" disabled={todoInput.length === 0}>
-            추가
-          </Button>
-        </TodoInputForm>
+    <TodoInputListWrapper>
+      <h3>오늘 할 일</h3>
+      <TodoInputForm onSubmit={(e) => submitTodo(e)}>
+        <Input
+          className="big"
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setTodoInput(e.target.value)
+          }
+          value={todoInput}
+        ></Input>
+        <Button className="medium" disabled={todoInput.length === 0}>
+          추가
+        </Button>
+      </TodoInputForm>
 
-        <TodoListContainer>
-          {todoList &&
-            todoList.map(({ id, todo, isCompleted }) => (
-              <TodoRow
-                key={id}
-                id={id}
-                todo={todo}
-                isCompleted={isCompleted}
-                setIsLIstUpdated={setIsLIstUpdated}
-              ></TodoRow>
-            ))}
-        </TodoListContainer>
-      </TodoInputListWrapper>
-    </TodoInputListContainer>
+      <TodoListContainer>
+        {todoList &&
+          todoList.map(({ id, todo, isCompleted }) => (
+            <TodoRow
+              key={id}
+              id={id}
+              todo={todo}
+              isCompleted={isCompleted}
+              setIsLIstUpdated={setIsLIstUpdated}
+            ></TodoRow>
+          ))}
+      </TodoListContainer>
+    </TodoInputListWrapper>
   );
 };
 
-const TodoInputListContainer = styled.div`
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  background-color: aliceblue;
-  justify-content: center;
-  align-items: center;
-`;
 const TodoInputListWrapper = styled.div`
   background-color: white;
   width: 24rem;
