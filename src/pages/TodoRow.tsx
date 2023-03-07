@@ -6,6 +6,10 @@ import { TodoObj } from "../types/type";
 interface SetUpdateStateProps {
   setIsLIstUpdated: React.Dispatch<React.SetStateAction<boolean>>;
 }
+interface cssProps {
+  strikeThrough: boolean;
+}
+
 export const TodoRow = ({
   id,
   todo,
@@ -75,8 +79,7 @@ export const TodoRow = ({
         </>
       ) : (
         <>
-          {/* <TodoContent strikeThrough={isChecked}>{todo}</TodoContent> */}
-          <TodoContent>{todo}</TodoContent>
+          <TodoContent strikeThrough={isChecked}>{todo}</TodoContent>
           <Button className="small" onClick={() => handleEdit(id)}>
             수정
           </Button>
@@ -109,7 +112,7 @@ const TodoContent = styled.div`
   padding-left: 4px;
 
   //isChecked 줄긋기
-  ${({ strikeThrough }: any) =>
+  ${({ strikeThrough }: cssProps) =>
     strikeThrough &&
     css`
       text-decoration: line-through;
