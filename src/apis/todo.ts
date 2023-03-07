@@ -1,6 +1,8 @@
 import { isAxiosError } from "axios";
 import { TodoObj } from "../types/type";
 import { instance } from "./config";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface TodoPayload {
   todoBody: string;
@@ -25,7 +27,9 @@ export const getTodos = async (): Promise<TodoObj[] | undefined> => {
     console.log("겟투두data", data); //[{id: 8807, todo: '1234', isCompleted: false, userId: 4840}, {…}]
     return data;
   } catch (err) {
-    console.log(err);
+    if (isAxiosError(err)) {
+      toast.error(err.response?.data.message);
+    }
   }
 };
 
@@ -35,7 +39,7 @@ export const deleteTodo = async (id: string) => {
     console.log("딜리트투두 fired");
   } catch (err) {
     if (isAxiosError(err)) {
-      alert(err.response?.data.message);
+      toast.error(err.response?.data.message);
     }
     console.log(err);
   }
@@ -53,6 +57,9 @@ export const updateTodo = async (
     });
     console.log("업데이트data", data);
   } catch (err) {
+    if (isAxiosError(err)) {
+      toast.error(err.response?.data.message);
+    }
     console.log(err);
   }
 };
